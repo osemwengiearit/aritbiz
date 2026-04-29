@@ -2,17 +2,36 @@
 <html>
   <head>
     <title>AritBiz</title>
-    <link rel="stylesheet" href="/static/styles.css" />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='styles.css') }}"
+    />
   </head>
   <body>
+    <nav>
+      <a href="/">
+        <img
+          src="{{ url_for('static', filename='aritbiz_logo.png') }}"
+          alt="AritBiz Logo"
+          width="150"
+        />
+      </a>
+    </nav>
+
     <nav>
       <a href="/">Home</a>
       <a href="/clients">Clients</a>
       <a href="/projects">Projects</a>
       <a href="/invoices">Invoices</a>
       <a href="/analytics">Analytics</a>
+
+      {% if session.user_id %}
+      <a href="/logout">Logout</a>
+      {% else %}
+      <a href="/login">Login</a>
+      {% endif %}
     </nav>
 
-    {% block body %}{% endblock %}
+    <main>{% block body %}{% endblock %}</main>
   </body>
 </html>

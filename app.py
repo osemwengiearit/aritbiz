@@ -1,7 +1,8 @@
-from flask import Flask, render_template, request, redirect, session
+from flask import Flask, render_template, request, redirect, session, flash
 from flask_session import Session
 from cs50 import SQL
 from werkzeug.security import generate_password_hash, check_password_hash
+from functools import wraps
 
 app = Flask(__name__)
 
@@ -10,6 +11,15 @@ app.config["SESSION_TYPE"] = "filesystem"
 Session(app)
 
 db = SQL("sqlite:///aritbiz.db")
+
+
+def login_required(f):
+    @wraps(f)
+    def decorated_function(*args, **kwargs):
+        if session.get("user_id") is None:
+            return redirect("/login")
+        return f(*args, **kwargs)
+    return decorated_function
 
 
 @app.route("/")
@@ -23,6 +33,16 @@ def register():
         username = request.form.get("username")
         password = request.form.get("password")
 
+        if not username or not password:
+            flash("All fields required")
+            return redirect("/register")
+
+        existing = db.execute("SELECT * FROM users WHERE username = ?", username)
+
+        if existing:
+            flash("Username already exists")
+            return redirect("/register")
+
         hash_pw = generate_password_hash(password)
 
         db.execute(
@@ -31,6 +51,7 @@ def register():
             hash_pw
         )
 
+        flash("Registration successful")
         return redirect("/login")
 
     return render_template("register.html")
@@ -38,6 +59,8 @@ def register():
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
+    session.clear()
+
     if request.method == "POST":
         username = request.form.get("username")
         password = request.form.get("password")
@@ -48,7 +71,8 @@ def login():
         )
 
         if len(rows) != 1 or not check_password_hash(rows[0]["hash"], password):
-            return "Invalid login"
+            flash("Invalid login")
+            return redirect("/login")
 
         session["user_id"] = rows[0]["id"]
 
@@ -57,27 +81,69 @@ def login():
     return render_template("login.html")
 
 
-@app.route("/clients")
+@app.route("/logout")
+def logout():
+    session.clear()
+    return redirect("/")
+
+
+@app.route("/clients", methods=["GET", "POST"])
+@login_required
 def clients():
+    if request.method == "POST":
+        name = request.form.get("name")
+        email = request.form.get("email")
+
+        db.execute(
+            "INSERT INTO clients (name, email) VALUES (?, ?)",
+            name,
+            email
+        )
+
+        return redirect("/clients")
+
     clients = db.execute("SELECT * FROM clients")
     return render_template("clients.html", clients=clients)
 
 
 @app.route("/projects")
+@login_required
 def projects():
     projects = db.execute("SELECT * FROM projects")
     return render_template("projects.html", projects=projects)
 
 
-@app.route("/invoices")
+@app.route("/invoices", methods=["GET", "POST"])
+@login_required
 def invoices():
+    if request.method == "POST":
+        client = request.form.get("client")
+        amount = request.form.get("amount")
+
+        db.execute(
+            "INSERT INTO invoices (client, amount, status) VALUES (?, ?, ?)",
+            client,
+            amount,
+            "Pending"
+        )
+
+        return redirect("/invoices")
+
     invoices = db.execute("SELECT * FROM invoices")
     return render_template("invoices.html", invoices=invoices)
 
 
 @app.route("/analytics")
+@login_required
 def analytics():
-    return render_template("analytics.html")
+    total_clients = db.execute("SELECT COUNT(*) as count FROM clients")[0]["count"]
+    total_invoices = db.execute("SELECT COUNT(*) as count FROM invoices")[0]["count"]
+
+    return render_template(
+        "analytics.html",
+        total_clients=total_clients,
+        total_invoices=total_invoices
+    )
 
 
 if __name__ == "__main__":
