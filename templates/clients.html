@@ -1,8 +1,48 @@
 {% extends "layout.html" %} {% block body %}
-<h2>Clients</h2>
-<ul>
-  {% for client in clients %}
-  <li>{{ client.name }}</li>
-  {% endfor %}
-</ul>
+
+<div class="container mt-4">
+  <h2>Clients</h2>
+
+  <form action="/clients" method="post" class="mb-4">
+    <div class="mb-3">
+      <input
+        type="text"
+        name="name"
+        class="form-control"
+        placeholder="Client Name"
+        required
+      />
+    </div>
+
+    <div class="mb-3">
+      <input
+        type="email"
+        name="email"
+        class="form-control"
+        placeholder="Client Email"
+      />
+    </div>
+
+    <button class="btn btn-primary" type="submit">Add Client</button>
+  </form>
+
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Email</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      {% for client in clients %}
+      <tr>
+        <td>{{ client.name }}</td>
+        <td>{{ client.email }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+
 {% endblock %}
