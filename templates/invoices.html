@@ -1,0 +1,8 @@
+{% extends "layout.html" %} {% block body %}
+<h2>Invoices</h2>
+<ul>
+  {% for invoice in invoices %}
+  <li>${{ invoice.amount }}</li>
+  {% endfor %}
+</ul>
+{% endblock %}
