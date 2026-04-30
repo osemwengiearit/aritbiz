@@ -1,100 +1,63 @@
+:root {
+  --sidebar-bg: #111d33; /* Dark navy from your screenshot */
+  --main-bg: #0b1426; /* Deeper navy for the background */
+  --brand-teal: #3ba08a; /* Your logo color */
+  --text-gray: #9ca3af;
+}
+
 body {
+  display: flex; /* This puts sidebar and content side-by-side */
   margin: 0;
-  font-family: Arial, sans-serif;
-  background: #081426;
+  background-color: var(--main-bg);
   color: white;
+  font-family: "Inter", sans-serif;
+  height: 100vh;
 }
 
-.dashboard {
-  display: flex;
-  min-height: 100vh;
-}
-
-/* Sidebar */
+/* Sidebar Styling */
 .sidebar {
   width: 250px;
-  background: #0f1d33;
+  background-color: var(--sidebar-bg);
+  height: 100vh;
   padding: 30px 20px;
   display: flex;
   flex-direction: column;
-  box-shadow: 4px 0 12px rgba(0, 0, 0, 0.3);
+  border-right: 1px solid #1e293b;
+  position: fixed; /* Keeps it on the left while you scroll */
 }
 
-.logo {
-  width: 120px;
-  margin: 0 auto 20px;
+.sidebar-logo {
+  width: 80px;
+  margin: 0 auto 10px;
 }
 
-.sidebar h2 {
+.brand-name {
+  color: var(--brand-teal);
+  font-size: 1.5rem;
+  font-weight: bold;
   text-align: center;
-  color: #38d9c5;
-  margin-bottom: 30px;
+  margin-bottom: 40px;
 }
 
-.sidebar a {
-  color: white;
+/* Sidebar Links */
+.nav-link {
+  color: white !important;
+  padding: 12px 15px;
   text-decoration: none;
-  padding: 14px;
-  margin: 6px 0;
+  font-size: 1rem;
   border-radius: 8px;
   transition: 0.3s;
 }
 
-.sidebar a:hover {
-  background: #2bb6a8;
+.nav-link:hover {
+  background-color: rgba(59, 160, 138, 0.1);
+  color: var(--brand-teal) !important;
 }
 
-/* Main content */
-.content {
-  flex: 1;
+/* Main Content Area */
+.main-content {
+  margin-left: 250px; /* Pushes content to the right of the sidebar */
   padding: 40px;
-}
-
-/* Cards */
-form,
-table {
-  background: #14233b;
-  border-radius: 12px;
-  padding: 20px;
-}
-
-input {
   width: 100%;
-  padding: 14px;
-  margin: 10px 0;
-  border: none;
-  border-radius: 8px;
-  background: #24344d;
-  color: white;
-}
-
-button {
-  width: 100%;
-  padding: 14px;
-  background: #2bb6a8;
-  color: white;
-  border: none;
-  border-radius: 8px;
-  font-weight: bold;
-  cursor: pointer;
-}
-
-button:hover {
-  background: #23998d;
-}
-
-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 20px;
-}
-
-th {
-  background: #2bb6a8;
-  padding: 15px;
-}
-
-td {
-  padding: 14px;
-  border-bottom: 1px solid #24344d;
+  text-align: left; /* Professional left-aligned text */
 }
