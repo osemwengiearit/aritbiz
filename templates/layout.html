@@ -9,17 +9,16 @@
   </head>
 
   <body>
-    <div class="container">
-      <a href="/">
+    <div class="dashboard">
+      <aside class="sidebar">
         <img
           src="{{ url_for('static', filename='aritbiz_logo.png') }}"
-          alt="AritBiz Logo"
           class="logo"
         />
-      </a>
 
-      <nav>
-        <a href="/">Home</a>
+        <h2>AritBiz</h2>
+
+        <a href="/">Dashboard</a>
         <a href="/clients">Clients</a>
         <a href="/projects">Projects</a>
         <a href="/invoices">Invoices</a>
@@ -30,9 +29,9 @@
         {% else %}
         <a href="/login">Login</a>
         {% endif %}
-      </nav>
+      </aside>
 
-      <main>{% block body %}{% endblock %}</main>
+      <main class="content">{% block body %}{% endblock %}</main>
     </div>
   </body>
 </html>
