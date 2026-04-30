@@ -38,7 +38,7 @@
       {% for client in clients %}
       <tr>
         <td>{{ client.name }}</td>
-        <td>{{ client.email }}</td>
+        <td>{{ client.email if client.email else 'No Email Provided' }}</td>
       </tr>
       {% endfor %}
     </tbody>

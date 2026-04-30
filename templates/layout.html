@@ -1,5 +1,5 @@
 <!doctype html>
-<html>
+<html lang="en">
   <head>
     <title>AritBiz</title>
     <link
@@ -7,31 +7,32 @@
       href="{{ url_for('static', filename='styles.css') }}"
     />
   </head>
+
   <body>
-    <nav>
+    <div class="container">
       <a href="/">
         <img
           src="{{ url_for('static', filename='aritbiz_logo.png') }}"
           alt="AritBiz Logo"
-          width="150"
+          class="logo"
         />
       </a>
-    </nav>
 
-    <nav>
-      <a href="/">Home</a>
-      <a href="/clients">Clients</a>
-      <a href="/projects">Projects</a>
-      <a href="/invoices">Invoices</a>
-      <a href="/analytics">Analytics</a>
+      <nav>
+        <a href="/">Home</a>
+        <a href="/clients">Clients</a>
+        <a href="/projects">Projects</a>
+        <a href="/invoices">Invoices</a>
+        <a href="/analytics">Analytics</a>
 
-      {% if session.user_id %}
-      <a href="/logout">Logout</a>
-      {% else %}
-      <a href="/login">Login</a>
-      {% endif %}
-    </nav>
+        {% if session.user_id %}
+        <a href="/logout">Logout</a>
+        {% else %}
+        <a href="/login">Login</a>
+        {% endif %}
+      </nav>
 
-    <main>{% block body %}{% endblock %}</main>
+      <main>{% block body %}{% endblock %}</main>
+    </div>
   </body>
 </html>

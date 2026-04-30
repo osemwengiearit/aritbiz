@@ -11,20 +11,25 @@
 <hr />
 
 <!-- Invoice Table -->
-<table border="1">
-  <tr>
-    <th>Client</th>
-    <th>Amount</th>
-    <th>Status</th>
-  </tr>
-
-  {% for invoice in invoices %}
-  <tr>
-    <td>{{ invoice.client }}</td>
-    <td>${{ invoice.amount }}</td>
-    <td>{{ invoice.status }}</td>
-  </tr>
-  {% endfor %}
+<table class="table table-bordered mt-4">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Client</th>
+      <th>Amount</th>
+      <th>Status</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for invoice in invoices %}
+    <tr>
+      <td>{{ invoice.id }}</td>
+      <td>{{ invoice.client }}</td>
+      <td>${{ invoice.amount }}</td>
+      <td>{{ invoice.status }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
 </table>
 
 {% endblock %}
