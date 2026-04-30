@@ -121,7 +121,8 @@ def invoices():
         amount = request.form.get("amount")
 
         db.execute(
-            "INSERT INTO invoices (client, amount, status) VALUES (?, ?, ?)",
+            "INSERT INTO invoices (user_id, client, amount, status) VALUES (?, ?, ?, ?)",
+            session["user_id"],
             client,
             amount,
             "Pending"
@@ -129,22 +130,31 @@ def invoices():
 
         return redirect("/invoices")
 
-    invoices = db.execute("SELECT * FROM invoices")
+    invoices = db.execute("SELECT * FROM invoices WHERE user_id = ?", session["user_id"])
     return render_template("invoices.html", invoices=invoices)
 
 
 @app.route("/analytics")
 @login_required
 def analytics():
-    total_clients = db.execute("SELECT COUNT(*) as count FROM clients")[0]["count"]
-    total_invoices = db.execute("SELECT COUNT(*) as count FROM invoices")[0]["count"]
+    total_clients = db.execute(
+        "SELECT COUNT(*) as count FROM clients"
+    )[0]["count"]
+
+    total_invoices = db.execute(
+        "SELECT COUNT(*) as count FROM invoices"
+    )[0]["count"]
+
+    revenue = db.execute(
+        "SELECT SUM(amount) as total FROM invoices"
+    )[0]["total"]
+
+    if revenue is None:
+        revenue = 0
 
     return render_template(
         "analytics.html",
         total_clients=total_clients,
-        total_invoices=total_invoices
+        total_invoices=total_invoices,
+        total_revenue=revenue
     )
-
-
-if __name__ == "__main__":
-    app.run(debug=True)

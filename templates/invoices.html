@@ -1,8 +1,30 @@
 {% extends "layout.html" %} {% block body %}
 <h2>Invoices</h2>
-<ul>
+
+<!-- Invoice Form -->
+<form method="post">
+  <input type="text" name="client" placeholder="Client Name" required />
+  <input type="number" name="amount" placeholder="Amount" required />
+  <button type="submit">Create Invoice</button>
+</form>
+
+<hr />
+
+<!-- Invoice Table -->
+<table border="1">
+  <tr>
+    <th>Client</th>
+    <th>Amount</th>
+    <th>Status</th>
+  </tr>
+
   {% for invoice in invoices %}
-  <li>${{ invoice.amount }}</li>
+  <tr>
+    <td>{{ invoice.client }}</td>
+    <td>${{ invoice.amount }}</td>
+    <td>{{ invoice.status }}</td>
+  </tr>
   {% endfor %}
-</ul>
+</table>
+
 {% endblock %}

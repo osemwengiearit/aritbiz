@@ -1,4 +1,19 @@
 {% extends "layout.html" %} {% block body %}
-<h2>Analytics</h2>
-<p>Total business insights dashboard coming soon.</p>
+<h2>Dashboard Analytics</h2>
+
+<div class="card">
+  <h3>Total Clients</h3>
+  <p>{{ total_clients }}</p>
+</div>
+
+<div class="card">
+  <h3>Total Invoices</h3>
+  <p>{{ total_invoices }}</p>
+</div>
+
+<div class="card">
+  <h3>Total Revenue</h3>
+  <p>${{ total_revenue }}</p>
+</div>
+
 {% endblock %}
