@@ -18,27 +18,30 @@
 
   <body>
     <div class="sidebar">
-      <a href="/">
+      <div class="logo-section">
         <img
-          src="{{ url_for('static', filename='aritbiz_logo.jpg') }}"
+          src="{{ url_for('static', filename='aritbiz_logo.png') }}"
+          class="sidebar-logo"
           alt="AritBiz Logo"
-          width="150"
         />
-      </a>
+        <h1 class="brand-name">AritBiz</h1>
+      </div>
 
-      <div class="brand-name">AritBiz</div>
+      <div class="nav-links">
+        <a href="/" class="nav-link">Dashboard</a>
+        <a href="/clients" class="nav-link">Clients</a>
+        <a href="/projects" class="nav-link">Projects</a>
+        <a href="/invoices" class="nav-link">Invoices</a>
+        <a href="/analytics" class="nav-link">Analytics</a>
+      </div>
 
-      <a href="/" class="nav-link">Dashboard</a>
-      <a href="/clients" class="nav-link">Clients</a>
-      <a href="/projects" class="nav-link">Projects</a>
-      <a href="/invoices" class="nav-link">Invoices</a>
-      <a href="/analytics" class="nav-link">Analytics</a>
-
-      {% if session.user_id %}
-      <a href="/logout" class="nav-link mt-auto">Logout</a>
-      {% else %}
-      <a href="/login" class="nav-link mt-auto">Login</a>
-      {% endif %}
+      <div class="bottom-nav">
+        {% if session.get("user_id") %}
+        <a href="/logout" class="nav-link">Logout</a>
+        {% else %}
+        <a href="/login" class="nav-link">Login</a>
+        {% endif %}
+      </div>
     </div>
 
     <div class="main-content">{% block body %}{% endblock %}</div>
