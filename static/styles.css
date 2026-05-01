@@ -1,188 +1,63 @@
 :root {
-  --sidebar-bg: #111d33;
-  --main-bg: #0b1426;
-  --brand-teal: #3ba08a;
-  --text-gray: #9ca3af;
-  --card-bg: #162338;
+  --bg-dark: #0b1426; /* Deep Navy Background */
+  --card-dark: #111d33; /* Sidebar/Form Color */
+  --brand-teal: #3ba08a; /* FASE2-style accent green */
+  --nav-purple: #4c51bf; /* The sidebar blue from your ref image */
 }
 
-/* Base */
 body {
-  margin: 0;
-  background: linear-gradient(135deg, #08111f, #0b1426);
+  background-color: var(--bg-dark);
   color: white;
-  font-family: "Segoe UI", Arial, sans-serif;
-}
-
-/* Sidebar */
-.sidebar {
-  width: 250px;
-  background: rgba(17, 29, 51, 0.95);
-  backdrop-filter: blur(12px);
-  height: 100vh;
-  padding: 30px 20px;
+  font-family:
+    "Inter",
+    -apple-system,
+    sans-serif; /* Modern, clean font */
+  text-align: center; /* Crucial for app look */
   display: flex;
   flex-direction: column;
-  border-right: 1px solid rgba(255, 255, 255, 0.05);
-  position: fixed;
-  top: 0;
-  left: 0;
+  align-items: center;
 }
 
-.sidebar-logo {
-  width: 90px;
-  margin: 0 auto 10px;
-  display: block;
+/* Sidebar and Dashboard Text (image_0f05bd.png style) */
+.nav-link {
+  color: var(--nav-blue) !important;
+  font-weight: 500;
+}
+.nav-link:hover {
+  color: var(--brand-teal) !important;
 }
 
-.brand-name {
-  color: var(--brand-teal);
-  font-size: 1.7rem;
+/* Modern App Heading */
+h2 {
   font-weight: bold;
-  text-align: center;
+  font-size: 2.5rem;
+  margin-top: 50px;
+  margin-bottom: 5px;
+}
+
+.sub-header {
+  color: #9ca3af;
+  font-size: 1.1rem;
   margin-bottom: 40px;
 }
 
-/* Navigation */
-.nav-link {
-  color: white !important;
-  padding: 14px 16px;
+/* FASE2-style Buttons and Links (image_1a8146.png style) */
+.btn-primary {
+  background-color: var(--brand-teal);
+  border: none;
+  padding: 12px;
+  width: 100%;
+  max-width: 400px;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* Small Links (image_1a8146.png style) */
+.small-link {
+  color: var(--brand-teal);
+  font-size: 0.9rem;
   text-decoration: none;
-  font-size: 1rem;
-  border-radius: 10px;
-  transition: 0.3s ease;
-  margin-bottom: 8px;
-}
-
-.nav-link:hover {
-  background-color: rgba(59, 160, 138, 0.15);
-  color: var(--brand-teal) !important;
-}
-
-.nav-link.active {
-  background: linear-gradient(
-    135deg,
-    rgba(59, 160, 138, 0.2),
-    rgba(59, 160, 138, 0.08)
-  );
-  border-left: 4px solid var(--brand-teal);
-  color: var(--brand-teal) !important;
-}
-
-/* Main Content */
-.main-content {
-  margin-left: 250px;
-  padding: 40px;
-  width: calc(100% - 250px);
-  min-height: 100vh;
-}
-
-/* Cards / Sections */
-.card,
-form,
-.dashboard-box {
-  background: rgba(22, 35, 56, 0.95);
-  padding: 28px;
-  border-radius: 18px;
-  margin-bottom: 25px;
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
-  border: 1px solid rgba(255, 255, 255, 0.03);
-}
-
-/* Headings */
-h1,
-h2,
-h3 {
-  color: var(--brand-teal);
-}
-
-/* Inputs */
-input,
-select {
-  width: 100%;
-  padding: 14px;
-  margin: 12px 0;
-  border: none;
-  border-radius: 10px;
-  background: #1e293b;
-  color: white;
-  font-size: 1rem;
-}
-
-input:focus,
-select:focus {
-  outline: 2px solid var(--brand-teal);
-}
-
-/* Buttons */
-button {
-  background: linear-gradient(135deg, #3ba08a, #46bca1);
-  border: none;
-  color: white;
-  padding: 14px;
-  border-radius: 12px;
-  width: 100%;
-  cursor: pointer;
-  font-weight: 600;
-  font-size: 1rem;
-  transition: all 0.3s ease;
-}
-
-button:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 18px rgba(59, 160, 138, 0.35);
-}
-
-/* Tables */
-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 20px;
-  background: var(--card-bg);
-  border-radius: 14px;
-  overflow: hidden;
-}
-
-th,
-td {
-  padding: 16px;
-  text-align: left;
-}
-
-th {
-  background: #1e293b;
-  color: var(--brand-teal);
-  font-weight: 600;
-}
-
-tr:nth-child(even) {
-  background: rgba(255, 255, 255, 0.03);
-}
-
-/* Text */
-p {
-  color: var(--text-gray);
-}
-
-.page-title {
-  font-size: 2rem;
-  margin-bottom: 25px;
-  font-weight: 700;
-}
-
-/* Mobile */
-@media (max-width: 768px) {
-  .sidebar {
-    width: 200px;
-  }
-
-  .main-content {
-    margin-left: 200px;
-    width: calc(100% - 200px);
-    padding: 20px;
-  }
-
-  .brand-name {
-    font-size: 1.3rem;
-  }
+  margin-top: 30px;
+  display: block;
 }

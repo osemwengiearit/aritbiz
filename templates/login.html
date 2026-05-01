@@ -1,8 +1,52 @@
 {% extends "layout.html" %} {% block body %}
-<h2>Login</h2>
-<form method="post">
-  <input name="username" placeholder="Username" />
-  <input name="password" type="password" placeholder="Password" />
-  <button type="submit">Login</button>
-</form>
+
+<div class="container d-flex flex-column align-items-center">
+  <!-- Use your logo file -->
+  <img
+    src="{{ url_for('static', filename='aritbiz_logo.jpg') }}"
+    width="120"
+    class="mb-3"
+  />
+
+  <div class="brand-name">AritBiz</div>
+
+  <!-- Main heading from image_0f05bd.png -->
+  <h2>Welcome to AritBiz</h2>
+  <div class="sub-header">Professional Business Solutions</div>
+
+  <form
+    action="/login"
+    method="post"
+    class="mt-4 w-100"
+    style="max-width: 400px"
+  >
+    <!-- Inputs look like Bigtal style -->
+    <div class="mb-3">
+      <input
+        type="text"
+        name="username"
+        class="form-control"
+        placeholder="Username"
+        required
+      />
+    </div>
+
+    <div class="mb-3">
+      <input
+        type="password"
+        name="password"
+        class="form-control"
+        placeholder="Password"
+        required
+      />
+    </div>
+
+    <!-- Teal action button -->
+    <button class="btn btn-primary" type="submit">Log In</button>
+  </form>
+
+  <!-- Small action link from FASE2 (image_1a8146.png) -->
+  <a href="/register" class="small-link">Don't have an account? Register</a>
+</div>
+
 {% endblock %}
