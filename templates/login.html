@@ -1,52 +1,53 @@
 {% extends "layout.html" %} {% block body %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AritBiz Management</title>
 
-<div class="container d-flex flex-column align-items-center">
-  <!-- Use your logo file -->
-  <img
-    src="{{ url_for('static', filename='aritbiz_logo.jpg') }}"
-    width="120"
-    class="mb-3"
-  />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
 
-  <div class="brand-name">AritBiz</div>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='styles.css') }}"
+    />
+  </head>
 
-  <!-- Main heading from image_0f05bd.png -->
-  <h2>Welcome to AritBiz</h2>
-  <div class="sub-header">Professional Business Solutions</div>
-
-  <form
-    action="/login"
-    method="post"
-    class="mt-4 w-100"
-    style="max-width: 400px"
-  >
-    <!-- Inputs look like Bigtal style -->
-    <div class="mb-3">
-      <input
-        type="text"
-        name="username"
-        class="form-control"
-        placeholder="Username"
-        required
+  <body>
+    <div class="auth-container">
+      <img
+        src="{{ url_for('static', filename='aritbiz_logo.jpg') }}"
+        width="80"
+        class="mb-3"
       />
+      <h2 style="color: var(--brand-teal); font-weight: bold">AritBiz</h2>
+      <p class="text-secondary mb-4">Sign in to manage your business</p>
+
+      <div class="auth-card">
+        <form action="/login" method="post">
+          <input
+            type="text"
+            name="username"
+            class="form-control"
+            placeholder="Username"
+            required
+          />
+          <input
+            type="password"
+            name="password"
+            class="form-control"
+            placeholder="Password"
+            required
+          />
+          <button type="submit" class="btn-auth">Log In</button>
+        </form>
+        <a href="/register" class="auth-link">Don't have an account? Sign up</a>
+      </div>
     </div>
-
-    <div class="mb-3">
-      <input
-        type="password"
-        name="password"
-        class="form-control"
-        placeholder="Password"
-        required
-      />
-    </div>
-
-    <!-- Teal action button -->
-    <button class="btn btn-primary" type="submit">Log In</button>
-  </form>
-
-  <!-- Small action link from FASE2 (image_1a8146.png) -->
-  <a href="/register" class="small-link">Don't have an account? Register</a>
-</div>
-
+  </body>
+</html>
 {% endblock %}
