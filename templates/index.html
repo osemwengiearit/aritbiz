@@ -1,6 +1,20 @@
-{% extends "layout.html" %} {% block body %}
-<h1>Welcome to AritBiz</h1>
-<p>Professional Business Solutions.</p>
-<a href="/register">Register</a>
-<a href="/login">Login</a>
+{% extends "layout.html" %} {% block title %}Welcome{% endblock %} {% block body
+%}
+<div class="auth-container">
+  <div class="auth-logo-text">
+    <h1>Arit<span>Biz</span></h1>
+    <p>Professional Business Solutions</p>
+  </div>
+
+  <div class="auth-card">
+    <form action="/login" method="get">
+      <button type="submit" class="btn-auth">LOG IN</button>
+    </form>
+
+    <div class="auth-footer">
+      Don’t have an account?
+      <a href="/register">Sign up</a>
+    </div>
+  </div>
+</div>
 {% endblock %}

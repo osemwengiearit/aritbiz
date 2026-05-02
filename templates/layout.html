@@ -22,13 +22,12 @@
   </head>
 
   <body>
-    {% if request.path not in ['/login', '/register'] %}
+    {% if request.path not in ['/', '/login', '/register'] %}
     <div class="sidebar">
       <div class="logo-section">
         <img
           src="{{ url_for('static', filename='aritbiz_logo.png') }}"
           class="sidebar-logo"
-          alt="AritBiz Logo"
         />
         <h1 class="brand-name">AritBiz</h1>
       </div>
@@ -42,17 +41,13 @@
       </div>
 
       <div class="bottom-nav">
-        {% if session.get("user_id") %}
         <a href="/logout" class="nav-link">Logout</a>
-        {% else %}
-        <a href="/login" class="nav-link">Login</a>
-        {% endif %}
       </div>
     </div>
     {% endif %}
 
     <div
-      class="{% if request.path in ['/login', '/register'] %}auth-page{% else %}main-content{% endif %}"
+      class="{% if request.path in ['/', '/login', '/register'] %}auth-page{% else %}main-content{% endif %}"
     >
       {% block body %}{% endblock %}
     </div>
