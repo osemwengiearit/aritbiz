@@ -1,6 +1,10 @@
 {% extends "layout.html" %} {% block title %}Welcome{% endblock %} {% block body
 %}
 <div class="auth-container">
+  <img
+    src="{{ url_for('static', filename='aritbiz_logo.png') }}"
+    class="sidebar-logo"
+  />
   <div class="auth-logo-text">
     <h1>Arit<span>Biz</span></h1>
     <p>Professional Business Solutions</p>

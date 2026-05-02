@@ -200,6 +200,7 @@ p {
 .auth-container {
   width: 420px;
   text-align: center;
+  transform: translateY(-30px);
 }
 
 .auth-title {
