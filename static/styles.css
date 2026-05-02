@@ -6,6 +6,11 @@
   --card-bg: #162338;
 }
 
+* {
+  box-sizing: border-box;
+  transition: all 0.2s ease;
+}
+
 /* Base */
 body {
   margin: 0;
@@ -75,6 +80,7 @@ body {
   padding: 40px;
   width: calc(100% - 250px);
   min-height: 100vh;
+  overflow-y: auto;
 }
 
 /* Cards / Sections */
@@ -168,6 +174,108 @@ p {
   font-size: 2rem;
   margin-bottom: 25px;
   font-weight: 700;
+}
+
+.auth-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background:
+    linear-gradient(rgba(11, 20, 38, 0.88), rgba(11, 20, 38, 0.92)),
+    url("/static/bg.jpg") center/cover no-repeat;
+}
+
+.auth-logo {
+  text-align: center;
+  font-size: 2.5rem;
+  color: white;
+  margin-bottom: 10px;
+}
+
+.auth-logo span {
+  color: var(--brand-teal);
+}
+
+.auth-card {
+  width: 420px;
+  background: rgba(22, 35, 56, 0.85);
+  backdrop-filter: blur(14px);
+  border-radius: 18px;
+  padding: 35px;
+  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.45);
+}
+
+.auth-card input {
+  background: #1e293b;
+  border: none;
+  color: white;
+  padding: 14px;
+  border-radius: 10px;
+  margin-bottom: 15px;
+}
+
+.auth-card input::placeholder {
+  color: #94a3b8;
+}
+
+.btn-auth {
+  width: 100%;
+  background: var(--brand-teal);
+  border: none;
+  padding: 14px;
+  border-radius: 10px;
+  color: white;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.btn-auth:hover {
+  transform: translateY(-2px);
+  opacity: 0.95;
+}
+
+.auth-card button {
+  margin-top: 10px;
+}
+
+.auth-link {
+  display: block;
+  margin-top: 18px;
+  text-align: center;
+  color: var(--brand-teal);
+  text-decoration: none;
+}
+
+.auth-title {
+  color: var(--brand-teal);
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.auth-subtitle {
+  text-align: center;
+  color: var(--text-gray);
+  margin-bottom: 30px;
+}
+
+.auth-page {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.auth-footer {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.auth-footer a {
+  color: var(--brand-teal);
+  text-decoration: none;
 }
 
 /* Mobile */
