@@ -332,3 +332,9 @@ ChatGPT (OpenAI) was used during development as a support tool for:
 
 All implementation decisions, integration, customization, testing,
 and final project development were completed by the author.
+
+---
+
+## Author
+
+Arit Bright Osemwengie
